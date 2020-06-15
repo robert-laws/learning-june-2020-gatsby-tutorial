@@ -1,5 +1,6 @@
 import React from "react"
 import Header from "../components/header"
+import Footer from "../components/footer"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
@@ -30,18 +31,29 @@ const MyImage = ({ children }) => <ImageWrapper>{children}</ImageWrapper>
 
 export default function Home({ data }) {
   return (
-    <div style={{ color: "purple" }}>
-      <Header text="Header for the site" />
-      <h1>Gatsby website</h1>
-      <p>Hello everyone...</p>
+    <div
+      style={{
+        color: "purple",
+        height: "1000px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <div>
+        <Header text="Header for the site" />
+        <h1>Gatsby website</h1>
+        <p>Hello everyone...</p>
 
-      <MyImagesWrapper>
-        {data.allImageSharp.edges.map(edge => (
-          <MyImage key={edge.node.id}>
-            <Img fluid={edge.node.fluid} />
-          </MyImage>
-        ))}
-      </MyImagesWrapper>
+        <MyImagesWrapper>
+          {data.allImageSharp.edges.map(edge => (
+            <MyImage key={edge.node.id}>
+              <Img fluid={edge.node.fluid} />
+            </MyImage>
+          ))}
+        </MyImagesWrapper>
+      </div>
+      <Footer />
     </div>
   )
 }
